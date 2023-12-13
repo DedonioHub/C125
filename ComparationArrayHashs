@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        HashSet<Integer> hashSet = new HashSet<>();
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        // Medir tempo de inserção para ArrayList
+        long startTimeArrayListInsert = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            arrayList.add(i);
+        }
+        long endTimeArrayListInsert = System.nanoTime();
+        long timeTakenArrayListInsert = endTimeArrayListInsert - startTimeArrayListInsert;
+
+        // Medir tempo de inserção para HashSet
+        long startTimeHashSetInsert = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            hashSet.add(i);
+        }
+        long endTimeHashSetInsert = System.nanoTime();
+        long timeTakenHashSetInsert = endTimeHashSetInsert - startTimeHashSetInsert;
+
+        // Medir tempo de inserção para HashMap
+        long startTimeHashMapInsert = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            hashMap.put(i, i);
+        }
+        long endTimeHashMapInsert = System.nanoTime();
+        long timeTakenHashMapInsert = endTimeHashMapInsert - startTimeHashMapInsert;
+
+        // Realizar busca de todos os elementos e medir o tempo
+        long startTimeArrayListSearch = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            arrayList.contains(i);
+        }
+        long endTimeArrayListSearch = System.nanoTime();
+        long timeTakenArrayListSearch = endTimeArrayListSearch - startTimeArrayListSearch;
+
+        long startTimeHashSetSearch = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            hashSet.contains(i);
+        }
+        long endTimeHashSetSearch = System.nanoTime();
+        long timeTakenHashSetSearch = endTimeHashSetSearch - startTimeHashSetSearch;
+
+        long startTimeHashMapSearch = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            hashMap.containsKey(i);
+        }
+        long endTimeHashMapSearch = System.nanoTime();
+        long timeTakenHashMapSearch = endTimeHashMapSearch - startTimeHashMapSearch;
+
+        // Imprimir os tempos
+        System.out.println("Tempo de inserção para ArrayList: " + timeTakenArrayListInsert + " ns");
+        System.out.println("Tempo de inserção para HashSet: " + timeTakenHashSetInsert + " ns");
+        System.out.println("Tempo de inserção para HashMap: " + timeTakenHashMapInsert + " ns");
+        System.out.println("Tempo de busca para ArrayList: " + timeTakenArrayListSearch + " ns");
+        System.out.println("Tempo de busca para HashSet: " + timeTakenHashSetSearch + " ns");
+        System.out.println("Tempo de busca para HashMap: " + timeTakenHashMapSearch + " ns");
+    }
+}
